@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Новый проект — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head"><div><h1>Новый проект</h1><p class="sub" id="np-sub">Задайте название и подключите Git-репозиторий.</p></div></div>
+		<form class="form-layout" id="project-form" novalidate>
+			<div>
+				<div class="stack">
+					<section class="card">
+						<h2>Основная информация</h2>
+						<div class="field" data-field="name"><label for="name">Название проекта *</label><input class="input" id="name" name="name" autocomplete="off"><div class="field-error"></div></div>
+						<div class="field" data-field="code"><label for="code">Код проекта *</label><input class="input" id="code" name="code" maxlength="6" autocomplete="off"><div class="hint">Код используется в номерах тикетов. Например, NTF-1.</div><div class="field-error"></div></div>
+						<div class="field" data-field="description"><label for="description">Описание</label><textarea class="textarea" id="description" name="description" style="min-height:90px"></textarea></div>
+					</section>
+					<section class="card">
+						<h2>Git-репозиторий</h2>
+						<div class="field" data-field="repo"><label for="repo">Ссылка на репозиторий</label><input class="input" id="repo" name="repo" placeholder="https://github.com/команда/проект" autocomplete="off"><div class="field-error"></div></div>
+						<div class="repo-row"><span class="chip hidden" id="repo-chip"></span><button class="btn btn-sm" id="repo-check" type="button">Проверить репозиторий</button></div>
+					</section>
+				</div>
+				<div class="form-actions"><a class="btn" href="projects.html">Отмена</a><button class="btn btn-primary" id="create-project" type="submit">Создать проект</button></div>
+			</div>
+			<aside>
+				<section class="card side-card"><h2>Что будет дальше</h2><p>После создания проекта пригласите участников и назначьте роли. Тикеты будут связаны с этим проектом.</p><div class="sep"></div>
+					<div class="kv">Руководитель</div><div class="kv-v" id="manager-name"></div><div class="kv">Доступ</div><div class="kv-v" style="margin:0">Только для участников</div></section>
+				<div class="alert alert-error hidden" id="np-fail"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.3v.1"/></svg><div><b>Проект пока не создан</b>Исправьте ссылку и повторите проверку. Остальные данные сохранены в форме.</div></div>
+			</aside>
+		</form>
+	</main>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/project-new.js"></script>
+</body>
+</html>
