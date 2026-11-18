@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Входящие тикеты — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head"><div><h1>Входящие тикеты</h1><p class="sub" id="tickets-sub"></p></div></div>
+		<div class="alert alert-success hidden" id="incoming-banner"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16 9.5"/></svg><div><b id="banner-title"></b><span id="banner-text"></span></div></div>
+		<div class="tabs" id="ticket-tabs" style="margin-top:34px;margin-bottom:0"></div>
+		<div class="toolbar">
+			<div class="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input class="input" id="q" placeholder="Найти по номеру или названию" aria-label="Поиск"></div>
+			<select class="select" id="f-status" aria-label="Статус"></select>
+			<select class="select" id="f-priority" aria-label="Приоритет"><option value="">Все приоритеты</option><option>Высокий</option><option>Средний</option><option>Низкий</option></select>
+		</div>
+		<div class="table tickets">
+			<div class="t-head"><div>Тикет</div><div>Статус</div><div>Приоритет</div><div>Исполнитель</div><div>Срок</div></div>
+			<div id="rows"></div>
+			<div class="t-foot"><span id="shown"></span><span>Обновлено только что</span></div>
+		</div>
+	</main>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/tickets.js"></script>
+</body>
+</html>

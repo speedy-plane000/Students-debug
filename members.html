@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Участники проекта — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head">
+			<div><h1>Участники проекта</h1><p class="sub" id="members-sub"></p></div>
+			<div class="head-actions"><button class="btn btn-primary" type="button" data-open="modal-invite" id="invite-open" style="height:38px"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19c0-3.2 2.7-5 6-5s4 .8 5 2.2M18 8v6M15 11h6"/></svg>Пригласить участника</button></div>
+		</div>
+		<div class="tabs"><a href="tickets.html">Тикеты</a><a href="members.html" class="active">Участники</a><a href="project-settings.html">Настройки</a></div>
+		<div class="alert alert-info page-alert"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b>Управлять участниками может только руководитель</b><span id="members-note"></span></div></div>
+		<div class="table members">
+			<div class="t-head"><div>Участник</div><div>Роль в проекте</div><div>Доступ</div><div>Действия</div></div>
+			<div id="members-body"></div>
+		</div>
+	</main>
+
+	<div class="overlay" id="modal-invite" role="dialog" aria-modal="true" aria-labelledby="modal-invite-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-invite-t">Приглашение в проект</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" id="invite-lead"></p>
+			<div class="field" id="invite-email-field"><label for="invite-email">Email участника *</label><input class="input" id="invite-email" type="email" placeholder="name@example.ru" autocomplete="off"><div class="field-error"></div></div>
+			<div class="hint" style="margin-top:-4px">Приглашать можно человека с готовым аккаунтом. Роль назначается после входа в проект.</div>
+			<div class="alert alert-success hidden" id="invite-sent"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16 9.5"/></svg><div><b>Приглашение отправлено</b>Письмо отправлено на <span id="invite-sent-email"></span>. В списке участников отображается статус «Приглашён».<span class="invite-code" id="invite-sent-code"></span></div></div>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-primary" id="invite-done" type="button">Готово</button></div>
+		</div>
+	</div>
+	<div class="overlay" id="modal-role" role="dialog" aria-modal="true" aria-labelledby="modal-role-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-role-t">Изменить роль участника</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" id="role-lead"></p>
+			<div class="person" style="margin-bottom:22px"><span class="avatar lg" id="role-ava"></span><div><b id="role-name"></b><small id="role-email"></small></div></div>
+			<div class="field"><label for="cur-role">Текущая роль</label><input class="input" id="cur-role" readonly></div>
+			<div class="field"><label for="new-role">Новая роль *</label><select class="select" id="new-role"><option value="manager">Руководитель</option><option value="developer">Разработчик</option><option value="tester">Тестировщик</option></select></div>
+			<div class="alert alert-info" style="margin-top:0"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b id="role-info-title"></b><span id="role-info-text"></span></div></div>
+			<p class="hint" style="margin:18px 0 0;font-size:13px">«Отмена» закроет окно без изменения роли.</p>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-primary" id="role-save" type="button">Сохранить роль</button></div>
+		</div>
+	</div>
+	<div class="overlay" id="modal-remove" role="dialog" aria-modal="true" aria-labelledby="modal-remove-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-remove-t">Удалить участника из проекта?</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead"><span id="rm-name"></span> потеряет доступ к проекту «<span id="rm-project"></span>». Комментарии и созданные тикеты останутся в проекте.</p>
+			<div class="kv">Участник</div><div class="kv-v" id="rm-line"></div>
+			<div class="kv" style="margin-top:20px">Роль</div><div class="kv-v" id="rm-role"></div>
+			<div class="alert alert-warn" id="rm-alert"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b id="rm-alert-title"></b><span id="rm-alert-text"></span></div></div>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-danger" id="remove-confirm" type="button">Удалить участника</button></div>
+		</div>
+	</div>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/members.js"></script>
+</body>
+</html>

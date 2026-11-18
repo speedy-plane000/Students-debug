@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Тикет — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head">
+			<div><h1 id="t-title"></h1><p class="sub" id="t-sub"></p></div>
+			<div class="head-actions" id="t-actions"></div>
+		</div>
+		<div class="ticket-layout">
+			<div class="stack">
+				<section class="request hidden" id="request"></section>
+				<section class="card" id="t-main"></section>
+				<section class="card">
+					<h3 class="sec" style="margin-bottom:20px" id="comments-title"></h3>
+					<div id="comments"></div>
+					<form class="comment-box" id="comment-form"><input class="input" id="comment-input" placeholder="Добавить комментарий..." aria-label="Комментарий" autocomplete="off"><button type="submit" aria-label="Отправить"><svg class="i" viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></button></form>
+				</section>
+			</div>
+			<aside class="stack">
+				<section class="card props" id="t-props"></section>
+				<section class="card"><h2 style="margin-bottom:16px">История</h2><div id="t-history"></div></section>
+			</aside>
+		</div>
+	</main>
+
+	<div class="overlay" id="modal-assign" role="dialog" aria-modal="true" aria-labelledby="modal-assign-t">
+		<div class="modal wide">
+			<div class="modal-head"><h2 id="modal-assign-t">Назначить тикет</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" id="assign-lead"></p>
+			<div class="picker" id="assign-list"></div>
+			<div class="alert alert-info" style="margin-top:0"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b>Разработчик получит уведомление</b>Тикет появится в личном списке <span id="assign-name"></span> со статусом «Назначен».</div></div>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-primary" id="assign-confirm" type="button">Назначить разработчику</button><button class="btn" id="assign-common" type="button">Отправить в общий список</button></div>
+		</div>
+	</div>
+	<div class="overlay" id="modal-delete-ticket" role="dialog" aria-modal="true" aria-labelledby="modal-delete-ticket-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-delete-ticket-t">Удалить тикет <span id="del-number"></span>?</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" style="margin:0">Тикет, комментарии и вложения будут удалены. Автор получит уведомление.</p>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-danger" id="delete-confirm" type="button">Удалить</button></div>
+		</div>
+	</div>
+	<div class="overlay" id="modal-own-date" role="dialog" aria-modal="true" aria-labelledby="modal-own-date-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-own-date-t">Предложить свою дату</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" id="own-lead"></p>
+			<div class="field" id="own-date-field"><label for="own-date">Дата *</label><input class="input" type="date" id="own-date"><div class="field-error"></div></div>
+			<div class="field" id="own-time-field"><label for="own-time">Время *</label><input class="input" type="time" id="own-time"><div class="field-error"></div></div>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-primary" id="own-submit" type="button">Предложить</button></div>
+		</div>
+	</div>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/ticket.js"></script>
+</body>
+</html>

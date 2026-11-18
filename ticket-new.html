@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Новый тикет — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head">
+			<div><h1>Новый тикет</h1><p class="sub" id="nt-sub">После подтверждения тикет будет отправлен руководителю.</p></div>
+			<div class="head-actions"><a class="btn" href="my-tickets.html">Отмена</a><button class="btn btn-primary" id="submit-top" type="button">Создать и отправить</button></div>
+		</div>
+		<div class="alert alert-error page-alert hidden" id="form-alert"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.3v.1"/></svg><div><b id="alert-title"></b><span id="alert-text"></span></div></div>
+		<form class="edit-layout" id="ticket-form" novalidate>
+			<div class="stack">
+				<section class="card">
+					<h2>Описание проблемы</h2>
+					<div class="field" data-field="title"><label for="title">Название *</label><input class="input" id="title" name="title" autocomplete="off"><div class="field-error"></div></div>
+					<div class="field" data-field="description"><label for="description">Описание *</label><textarea class="textarea" id="description" name="description" style="min-height:88px"></textarea><div class="hint">Почему и когда нужно исправить, тоже напишите в описании.</div><div class="field-error"></div></div>
+					<div class="field" data-field="steps"><label for="steps">Шаги воспроизведения *</label><textarea class="textarea" id="steps" name="steps" style="min-height:88px"></textarea><div class="field-error"></div></div>
+					<div class="row2">
+						<div class="field"><label for="expected">Ожидаемый результат</label><input class="input" id="expected" name="expected" autocomplete="off"></div>
+						<div class="field"><label for="actual">Фактический результат</label><input class="input" id="actual" name="actual" autocomplete="off"></div>
+					</div>
+				</section>
+				<section class="card">
+					<div class="field"><label for="comment">Комментарий</label><input class="input" id="comment" name="comment" autocomplete="off"></div>
+					<div class="card-head-row"><label>Вложения</label><button class="btn btn-sm" id="attach-btn" type="button"><svg class="i" viewBox="0 0 24 24"><path d="m20 11-8.5 8.5a5 5 0 0 1-7-7L13 4a3.3 3.3 0 0 1 5 5l-8.5 8.5a1.7 1.7 0 0 1-2.5-2.5L14.5 8"/></svg>Прикрепить файлы</button><input type="file" id="attach-input" multiple hidden></div>
+					<div id="attach-list" class="stack" style="gap:10px"></div>
+					<div class="fileinfo">Изображения, документы и видео · Не более 20 МБ на файл</div>
+					<div id="attach-errors" class="file-errors hidden"></div>
+				</section>
+			</div>
+			<aside class="stack">
+				<section class="card">
+					<h2>Параметры</h2>
+					<div class="field" data-field="projectId"><label for="projectId">Проект *</label><select class="select" id="projectId" name="projectId"></select><div class="field-error"></div></div>
+					<div class="field" data-field="priority"><label for="priority">Приоритет *</label><select class="select" id="priority" name="priority"><option value="">Выберите приоритет</option><option>Высокий</option><option>Средний</option><option>Низкий</option></select><div class="field-error"></div></div>
+					<div class="field" data-field="startDate"><label for="startDate">Дата начала *</label><input class="input" type="date" id="startDate" name="startDate"><div class="field-error"></div></div>
+					<div class="field" data-field="startTime"><label for="startTime">Время начала *</label><input class="input" type="time" id="startTime" name="startTime"><div class="field-error"></div></div>
+					<div class="field" data-field="dueDate"><label for="dueDate">Срок выполнения *</label><input class="input" type="date" id="dueDate" name="dueDate"><div class="field-error"></div></div>
+					<div class="field" data-field="dueTime"><label for="dueTime">Время завершения *</label><input class="input" type="time" id="dueTime" name="dueTime"><div class="field-error"></div></div>
+				</section>
+				<div class="alert alert-info"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b>На рассмотрение руководителю</b>После создания тикет получит статус «На рассмотрении».</div></div>
+			</aside>
+		</form>
+	</main>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/ticket-new.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Настройки проекта — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<main class="content">
+		<div class="page-head"><div><h1 id="project-title"></h1><p class="sub">Настройки проекта и подключение к репозиторию.</p></div></div>
+		<div class="tabs"><a href="tickets.html">Тикеты</a><a href="members.html">Участники</a><a href="project-settings.html" class="active">Настройки</a></div>
+		<form class="form-layout" id="project-form" novalidate>
+			<div>
+				<div class="stack">
+					<section class="card">
+						<h2>Основная информация</h2>
+						<div class="field" data-field="name"><label for="name">Название проекта *</label><input class="input" id="name" name="name" autocomplete="off"><div class="field-error"></div></div>
+						<div class="field" data-field="code"><label for="code">Код проекта *</label><input class="input" id="code" name="code" maxlength="6" autocomplete="off"><div class="hint">Код используется в номерах тикетов. Например, NTF-1.</div><div class="field-error"></div></div>
+						<div class="field" data-field="description"><label for="description">Описание</label><textarea class="textarea" id="description" name="description" style="min-height:90px"></textarea></div>
+					</section>
+					<section class="card">
+						<h2>Git-репозиторий</h2>
+						<div class="field" data-field="repo"><label for="repo">Ссылка на репозиторий</label><input class="input" id="repo" name="repo" placeholder="https://github.com/команда/проект" autocomplete="off"><div class="field-error"></div></div>
+						<div class="repo-row"><span class="chip hidden" id="repo-chip"></span><button class="btn btn-sm" id="repo-check" type="button">Проверить репозиторий</button></div>
+					</section>
+				</div>
+				<div class="form-actions"><a class="btn" href="projects.html">Отмена</a><button class="btn btn-primary" type="submit">Сохранить изменения</button></div>
+			</div>
+			<aside class="stack">
+				<section class="card side-card"><h2>О проекте</h2><p>Изменения проекта доступны всем его участникам. Только руководитель может изменять настройки и удалять проект.</p><div class="sep"></div>
+					<div class="kv">Руководитель</div><div class="kv-v" id="owner-name"></div><div class="kv">Доступ</div><div class="kv-v" style="margin:0">Только для участников</div></section>
+				<section class="card side-card"><h2>Удаление проекта</h2><p>Проект и связанные тикеты будут удалены без возможности восстановления.</p><button class="btn btn-danger" type="button" data-open="modal-delete-project" style="height:38px">Удалить проект</button></section>
+			</aside>
+		</form>
+	</main>
+
+	<div class="overlay" id="modal-delete-project" role="dialog" aria-modal="true" aria-labelledby="modal-delete-project-t">
+		<div class="modal">
+			<div class="modal-head"><h2 id="modal-delete-project-t">Удалить проект «<span id="dp-name"></span>»?</h2><button class="modal-x" type="button" data-close aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+			<p class="lead" id="dp-lead"></p>
+			<div class="alert alert-warn" style="margin-top:0;margin-bottom:20px"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b style="margin:0">Git-репозиторий останется без изменений</b></div></div>
+			<div class="field" id="confirm-field"><label for="confirm-name">Для подтверждения введите название проекта</label><input class="input" id="confirm-name" autocomplete="off"><div class="field-error">Название не совпадает с названием проекта</div></div>
+			<div class="modal-foot"><button class="btn" type="button" data-close>Отмена</button><button class="btn btn-danger" id="delete-confirm" type="button">Удалить проект</button></div>
+		</div>
+	</div>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/pages/project-settings.js"></script>
+</body>
+</html>
