@@ -219,6 +219,10 @@ const Shell = (() => {
 	const init = ({ roles = null, active = '', project = true, crumbs = [] } = {}) => {
 		const params = new URLSearchParams(location.search);
 		const user = Store.currentUser();
+		if (!user) {
+			location.replace('login.html');
+			return null;
+		}
 		const forced = params.get('project');
 		if (forced && Store.membership(forced, user.id)) Store.setProjectId(forced);
 		if (!project) Store.setProjectId(null);
@@ -247,13 +251,14 @@ const Shell = (() => {
 		wrap.innerHTML = `<header class="topbar"><div class="crumbs">${crumbHtml}</div>
 			<div class="top-actions"><span class="env">Рабочая среда</span>
 			<button class="icon-btn" id="bell" aria-label="Уведомления">${icon('bell')}${n.unread ? '<span class="dot"></span>' : ''}</button>
-			<span class="sep"></span><a class="logout" href="projects.html">Выйти</a></div></header>
+			<span class="sep"></span><a class="logout" href="login.html" id="logout">Выйти</a></div></header>
 			<div class="dropdown" id="notifications" role="dialog" aria-label="Уведомления">${n.html}</div>`;
 		main.before(wrap);
 		wrap.appendChild(main);
 		document.body.prepend(sidebar);
 
 		const dropdown = $('#notifications');
+		$('#logout').addEventListener('click', () => Store.setCurrentUser(null));
 		$('#bell').addEventListener('click', () => dropdown.classList.toggle('open'));
 		dropdown.addEventListener('click', e => {
 			if (e.target.closest('#read-all')) {

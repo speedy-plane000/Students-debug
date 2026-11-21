@@ -96,22 +96,22 @@ else if (ctx) {
 			render();
 			UI.toast('Запрос на перенос срока отклонён');
 		} else if (e.target.closest('#take-work')) {
-			Store.takeTicket(id);
+			const result = Dispatch.takeInWork(id);
 			render();
-			UI.toast('Тикет взят в работу');
+			UI.toast(result.ok ? 'Тикет взят в работу' : result.error);
 		}
 	});
 
 	$('#assign-confirm').addEventListener('click', () => {
 		const selected = $('#assign-list .pick.selected');
 		if (!selected) return;
-		Store.assignTicket(id, selected.dataset.user);
-		UI.flash('Тикет назначен разработчику');
+		const result = Dispatch.assign(id, selected.dataset.user);
+		UI.flash(result.ok ? 'Тикет назначен разработчику' : result.error);
 		location.href = 'tickets.html';
 	});
 	$('#assign-common').addEventListener('click', () => {
-		Store.assignTicket(id, null);
-		UI.flash('Тикет отправлен в общий список');
+		const result = Dispatch.sendToCommonList(id);
+		UI.flash(result.ok ? 'Тикет отправлен в общий список' : result.error);
 		location.href = 'tickets.html';
 	});
 	$('#delete-confirm').addEventListener('click', () => {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Вход — Контур</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-body">
+	<main class="auth">
+		<div class="auth-brand"><span class="logo"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span>Контур</div>
+		<section class="auth-card">
+			<div class="tabs auth-tabs"><a href="#" data-mode="login" class="active">Вход</a><a href="#" data-mode="register">Регистрация</a></div>
+			<h1 id="auth-title">Вход в систему</h1>
+			<p class="sub" id="auth-sub"></p>
+			<div class="alert alert-error auth-alert hidden" id="auth-error" role="alert"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.3v.1"/></svg><div><b>Не удалось войти</b><span id="auth-error-text"></span></div></div>
+			<form id="login-form" novalidate>
+				<div class="field" data-field="email"><label for="login-email">Почта</label><input class="input" id="login-email" name="email" type="email" placeholder="name@example.ru" autocomplete="username"><div class="field-error"></div></div>
+				<div class="field" data-field="password"><label for="login-password">Пароль</label><div class="pw-wrap"><input class="input" id="login-password" name="password" type="password" autocomplete="current-password"><button class="pw-toggle" type="button" aria-label="Показать пароль"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="field-error"></div></div>
+				<button class="btn btn-primary auth-submit" type="submit">Войти</button>
+				<p class="auth-switch">Нет аккаунта? <button type="button" data-mode="register">Зарегистрироваться</button></p>
+			</form>
+			<form id="register-form" class="hidden" novalidate>
+				<div class="field" data-field="name"><label for="reg-name">Имя и фамилия</label><input class="input" id="reg-name" name="name" autocomplete="name" placeholder="Мария Иванова"><div class="field-error"></div></div>
+				<div class="field" data-field="email"><label for="reg-email">Почта</label><input class="input" id="reg-email" name="email" type="email" placeholder="name@example.ru" autocomplete="email"><div class="field-error"></div></div>
+				<div class="field" data-field="password"><label for="reg-password">Пароль</label><div class="pw-wrap"><input class="input" id="reg-password" name="password" type="password" autocomplete="new-password"><button class="pw-toggle" type="button" aria-label="Показать пароль"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="hint">Не короче 8 символов, с буквами и цифрами.</div><div class="field-error"></div></div>
+				<div class="field" data-field="confirm"><label for="reg-confirm">Повторите пароль</label><div class="pw-wrap"><input class="input" id="reg-confirm" name="confirm" type="password" autocomplete="new-password"><button class="pw-toggle" type="button" aria-label="Показать пароль"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="field-error"></div></div>
+				<button class="btn btn-primary auth-submit" type="submit">Создать аккаунт</button>
+				<p class="auth-switch">Уже есть аккаунт? <button type="button" data-mode="login">Войти</button></p>
+			</form>
+		</section>
+		<div class="alert alert-info demo-hint" id="demo-hint"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></svg><div><b>Демо-аккаунты</b>marina.volkova@example.ru, anna.smirnova@example.ru, pavel.krylov@example.ru и другие. Пароль у всех: kontur123</div></div>
+	</main>
+	<script src="js/store.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/auth.js"></script>
+	<script src="js/pages/login.js"></script>
+</body>
+</html>

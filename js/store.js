@@ -104,10 +104,11 @@ const Store = (() => {
 		cache = null;
 	};
 
-	const getSession = () => JSON.parse(localStorage.getItem(SESSION_KEY) || '{"userId":"u1","projectId":null}');
+	const getSession = () => JSON.parse(localStorage.getItem(SESSION_KEY) || '{"userId":null,"projectId":null}');
 	const setSession = patch => localStorage.setItem(SESSION_KEY, JSON.stringify({ ...getSession(), ...patch }));
 	const getProjectId = () => getSession().projectId;
 	const setProjectId = id => setSession({ projectId: id });
+	const setCurrentUser = id => setSession({ userId: id, projectId: null });
 
 	const user = id => db().users.find(u => u.id === id) || null;
 	const userByEmail = email => db().users.find(u => u.email.toLowerCase() === String(email).trim().toLowerCase()) || null;
@@ -463,7 +464,7 @@ const Store = (() => {
 	}));
 
 	return {
-		ROLES, PRIORITIES, MAX_FILE_SIZE, db, reset, toLocalIso,
+		ROLES, PRIORITIES, MAX_FILE_SIZE, db, persist, reset, toLocalIso, setCurrentUser, userByEmail,
 		getProjectId, setProjectId, user, currentUser, project, membership,
 		projectCards, managedProjects, testerProjects, repoLabel, checkRepository,
 		validateProject, createProject, updateProject, deleteProject, joinByCode,
