@@ -29,7 +29,6 @@ public class TicketEntity
     public ProjectMemberEntity? Verifier {get;set;}
 
     //кто берет в работу 
-    public Guid? ReservationId {get;set;}
     public ReservationEntity? Reservation {get;set;} 
     
     public List<CommentEntity> Comments {get;set;} = new();
