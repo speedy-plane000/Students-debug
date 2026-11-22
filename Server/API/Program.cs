@@ -11,7 +11,5 @@ builder.Services.AddDbContext<DebugDbContext>(options =>
 
 var app = builder.Build();
 
-
-
 app.MapControllers();
 app.Run();

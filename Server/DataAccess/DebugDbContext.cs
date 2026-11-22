@@ -2,7 +2,7 @@
 
 namespace DataAccess;
 
-public class DebugDbContext(DbContextOptions<DebugDbContext> options) : DbContext(options)
+public class DebugDbContext(DbContextOptions<DebugDbContext> options) : DbContext(options),IDebugDbContext
 {
     public DbSet<UserEntity> Users {get;set;}
     public DbSet<ProjectEntity> Projects {get;set;}
