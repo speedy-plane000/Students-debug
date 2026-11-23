@@ -4,9 +4,9 @@ using Core.Enums;
 public class ProjectMemberEntity
 {
     public Guid Id {get;set;}
-    public bool isOwner {get;set;}
-    public string inviteCode {get;set;} = null!;
-    public DateTime invitedAt {get;set;} 
+    public bool IsOwner {get;set;}
+    public string InviteCode {get;set;} = null!;
+    public DateTime InvitedAt {get;set;} 
     public MemberStatus Status {get;set;}
     public ProjectRole? Role {get;set;}
     public Guid ProjectId { get; set; }

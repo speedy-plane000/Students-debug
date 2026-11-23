@@ -1,8 +1,8 @@
-
 public enum ErrorType
 {
     None,
     BadRequest,
     Conflict,
-    NotFound
+    NotFound,
+    Forbidden
 }

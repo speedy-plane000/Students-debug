@@ -3,5 +3,6 @@ namespace Core.Enums;
 public enum MemberStatus
 {
     Invited,
-    Active
+    Active,
+    Removed
 }
