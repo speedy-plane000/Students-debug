@@ -10,3 +10,9 @@ public record LoginUserRequest(
     string Password,
     string Email
 );
+
+public record UserResponse(
+    Guid Id,
+    string FullName,
+    string Email
+);

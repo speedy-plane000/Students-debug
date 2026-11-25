@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -44,6 +45,37 @@ public class UserController : ControllerBase
 
         SetTokenCookie(result.Value!);
         return Ok();
+    }
+
+    [Authorize]
+    [HttpGet("me")]
+    public async Task<ActionResult<UserResponse>> GetMe()
+    {
+        var userId = GetUserId();
+        var result = await userService.GetMe(userId);
+        if (!result.IsSuccess)
+        {
+            return NotFound(result.TextError);
+        }
+        return Ok(result.Value);
+    }
+
+    [HttpPost("Logout")]
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete("tasty-cookies", new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = Request.IsHttps,
+            SameSite = SameSiteMode.Lax
+        });
+        return Ok();
+    }
+
+    private Guid GetUserId()
+    {
+        var claim = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+        return Guid.TryParse(claim, out var userId) ? userId : Guid.Empty;
     }
     private void SetTokenCookie(string token)
     {

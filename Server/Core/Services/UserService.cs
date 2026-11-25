@@ -57,4 +57,13 @@ public class UserService : IUserService
     {   
         return await context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
+    public async Task<Result<UserResponse>> GetMe(Guid userId)
+    {
+        var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        if (user == null)
+        {
+            return new Result<UserResponse>(ErrorType.NotFound, "User not found");
+        }
+        return new Result<UserResponse>(new UserResponse(user.Id, user.FullName, user.Email));
+    }
 }
